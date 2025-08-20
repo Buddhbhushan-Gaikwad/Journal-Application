@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: JournalApp
+  data:
+    mongodb:
+      database: journalAppDb
+      uri: mongodb+srv://533531712587budd:asdfghjkl@cluster1.eyjoaqf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1
+      auto-index-creation: true
+
+  main:
+    allow-circular-references: true
+
+
+
+
+
+
+
+
+
+#spring.application.name=JournalApp
+#spring.data.mongodb.database=journalAppDb
+#spring.data.mongodb.auto-index-creation=true
+#spring.main.allow-circular-references=true
+#spring.data.mongodb.uri=mongodb+srv://533531712587budd:asdfghjkl@cluster1.eyjoaqf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1
