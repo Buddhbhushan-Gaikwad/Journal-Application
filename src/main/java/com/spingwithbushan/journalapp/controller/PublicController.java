@@ -1,27 +1,41 @@
+package com.spingwithbushan.journalapp.controller;
+
 import com.spingwithbushan.journalapp.entity.User;
+import com.spingwithbushan.journalapp.service.Userservice;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Service
-public class Userservice {
+@Slf4j
+@RestController
+@RequestMapping("/public")
+public class PublicController {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final Userservice userService;
 
     @Autowired
-    public Userservice(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+    public PublicController(Userservice userService) {
+        this.userService = userService;
     }
 
-    public User saveUserEntry(User user) {
-        // Encode password before saving
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.saveUserEntity(user);
+    @GetMapping("/health-check")
+    public String healthCheck() {
+        return "OK";
     }
-}
 
-
-
+    @PostMapping("/create-user")
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+        try {
+            userService.saveUserEntry(user);
+            return ResponseEntity.ok("User created successfully");
+        } catch (Exception e) {
+            log.error("Error Occur while Creating User");
+//            log.error("Error Occur while Creating User");
+//            log.error("Error Occur while Creating User");
+//            log.error("Error Occur while Creating User");
+//            log.error("Error Occur while Creating User");
+        }
+        return ResponseEntity.badRequest().build();
+    }
 }

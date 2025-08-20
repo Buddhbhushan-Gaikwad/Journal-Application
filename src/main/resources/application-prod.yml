@@ -11,8 +11,14 @@ spring:
     allow-circular-references: true
 
 
+server:
+  port: 8081
 
-
+logging:
+  level:
+    com:
+      spingwithbushan:
+        journalapp: DEBUG
 
 
 
